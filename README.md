@@ -1,8 +1,8 @@
-# Treehugger Talk
+# Talk: "Why Th'on Python?"
 
-About [Treehugger](https://github.com/timeoutdigital/treehugger).
+About [Python](https://en.m.wikipedia.org/wiki/Python_(programming_language)).
 
-Given 2017-03-16 at Ciklum Speaker's Corner in Kyiv.
+Given 2017-05-11 in Tech Talks session.
 
 Plain HTML - read locally by opening the file or serving with e.g.
 `python3 -m http.server`.
