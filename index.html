@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>Why Th'on Python?</title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/black.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+
+<section>
+    <h1>Why Th'on Python? 🐍</h1>
+    <h2>Adam Johnson</h2>
+    <h2>11 May 2017</h2>
+</section>
+
+
+<section>
+    <h2>2 or 3??</h2>
+    <img src="img/elephant.jpg" alt="">
+</section>
+<section>
+    <h2>Python 3!</h2>
+    <ul>
+        <li>3.6 obviously!</li>
+        <li>Not so dissimilar as you might believe</li>
+        <li>Only place we're using 2: Ansible (mostly 3 compatible..)</li>
+    </ul>
+</section>
+<section>
+    <h2>Python 3 in the community</h2>
+    <ul>
+        <li>Django just released last 2.7-compatible LTS release</li>
+        <li>Ansible mostly compatible, but has to support old Linuxes'</li>
+        <li>Most libraries 2 + 3 compatible</li>
+    </ul>
+</section>
+<section>
+    <h2>Python 2 + 3 compat = <code>six</code></h2>
+    <ul>
+        <li>How most libraries support both</li>
+        <li>For example:</li>
+    </ul>
+<pre><code># Python 2
+mydict.iteritems()
+# Python 3
+mydict.items()
+# Both with six:
+six.iteritems(mydict)</code></pre>
+</section>
+
+<section>
+    <h2>Packaging</h2>
+    <ul>
+        <li>PyPI - used to be flaky, now great</li>
+        <li>Install requirements with a <code>requirements.txt</code> like:</li>
+    </ul>
+<pre><code>Django==1.11.1
+django-cors-headers==2.0.2
+pytz==2017.2
+</code></pre>
+</section>
+<section>
+    <h2>Packaging</h2>
+    <ul>
+        <li>Commonly used: <code>pip-compile</code></li>
+    </ul>
+<pre><code># requirements.in
+Django>=1.11,&lt;1.12
+django-cors-headers
+</code></pre>
+</section>
+<section>
+    <h2>Packaging - the future</h2>
+    <ul>
+        <li><code>Pipfile</code> - much like <code>Gemfile</code> or <code>package.json</code>.</li>
+    </ul>
+<pre><code>[packages]
+Django = '>=1.11,&lt;1.12'
+django-cors-headers = '2.0.2'
+</code></pre>
+</section>
+
+<section>
+    <h2>Language</h2>
+    <ul>
+        <li><code>async def</code></li>
+        <li>Type annotations</li>
+        <li>f strings</li>
+    </ul>
+</section>
+<section>
+    <h2><code>async def</code></h2>
+    <ul>
+        <li>Added in 3.5</li>
+        <li>Coroutines...</li>
+    </ul>
+<pre><code>import asyncio
+
+async def hello_world():
+    print("Hello World!")
+
+loop = asyncio.get_event_loop()
+# Blocking call which returns when the hello_world()
+# coroutine is done
+loop.run_until_complete(hello_world())
+loop.close()
+</code></pre>
+</section>
+<section>
+    <h2>Type annotations</h2>
+    <ul>
+        <li>Formalized 3.5, more stuff in 3.6</li>
+        <li>Check with <code>mypy</code></li>
+    </ul>
+<pre><code>def fib(n: int) -> Iterator[int]:
+    a: int = 0
+    b: int = 1
+    while a < n:
+        yield a
+        a, b = b, a+b
+</code></pre>
+</section>
+<section>
+    <h2>f-strings</h2>
+    <ul>
+        <li>Supercedes a number of pre-existing string formatting methods..</li>
+    </ul>
+<pre><code>name = 'Adam'
+level = 9001
+print(f"{name}'s power level is >{level}")
+# old:
+print("{}'s power level is >{}".format(name, level))
+</code></pre>
+</section>
+
+<section>
+    <h2>Thank you!</h2>
+    <ul>
+        <li>Questions?</li>
+        <li>Treehugger <a href="https://github.com/timeoutdigital/treehugger">github.com/timeoutdigital/treehugger</a></p>
+        <li>Slides <a href="https://github.com/adamchainz/talk-treehugger">github.com/adamchainz/talk-treehugger</a></p>
+    </ul>
+</section>
+
+
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+                dependencies: [
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
